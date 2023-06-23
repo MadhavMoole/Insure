@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 
 //import com.insure.base.Insurance;
 import com.insure.base.User;
-import com.insure.base.UserPolicy;
+import com.insure.base.Customer;
+import com.insure.base.CustomerPolicy;
 import com.insure.resultSet.InsuranceResultSetExtractor;
 
 @Repository
@@ -40,7 +41,7 @@ public class InsureDAOImpl implements InsureDAO {
 	}
 
 	@Override
-	public ArrayList<UserPolicy> getData(String username, String password) {
+	public ArrayList<CustomerPolicy> getData(String username, String password) {
 		// TODO Auto-generated method stub
 		int user_id = jt.queryForObject("select id from user.user where userName = ? and password = ?;", Integer.class,
 				username, password);
@@ -48,8 +49,14 @@ public class InsureDAOImpl implements InsureDAO {
 		String sql = "SELECT p.id, p.scheme_number, p.policy_name, p.max_no_of_years, p.amount FROM policy p "
 				+ "JOIN user_policy up ON p.id = up.policy_id JOIN insurance i ON i.id = up.insurance_id "
 				+ "WHERE i.user_id = ?";
-		ArrayList<UserPolicy> uP =  jt.query(sql, new InsuranceResultSetExtractor(), user_id);
+		ArrayList<CustomerPolicy> uP =  jt.query(sql, new InsuranceResultSetExtractor(), user_id);
 		return uP;
+	}
+
+	@Override
+	public void savePolicy(Customer customer) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

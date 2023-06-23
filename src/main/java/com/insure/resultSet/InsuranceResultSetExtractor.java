@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
-import com.insure.base.UserPolicy;
+import com.insure.base.CustomerPolicy;
 
-public class InsuranceResultSetExtractor implements ResultSetExtractor<ArrayList<UserPolicy>> {
+public class InsuranceResultSetExtractor implements ResultSetExtractor<ArrayList<CustomerPolicy>> {
 
 	@Override
-	public ArrayList<UserPolicy> extractData(ResultSet rs) throws SQLException, DataAccessException {
+	public ArrayList<CustomerPolicy> extractData(ResultSet rs) throws SQLException, DataAccessException {
 		// TODO Auto-generated method stub
-		ArrayList<UserPolicy> User = new ArrayList<>();
+		ArrayList<CustomerPolicy> User = new ArrayList<>();
 		while(rs.next()) {
-			UserPolicy Policy = new UserPolicy();
+			CustomerPolicy Policy = new CustomerPolicy();
 			Policy.setAmount(rs.getInt(5));
 			Policy.setMax_no_of_years(rs.getInt(4));
 			Policy.setPolicy_name(rs.getString(3));
