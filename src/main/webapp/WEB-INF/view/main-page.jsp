@@ -18,7 +18,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="temp" items="${UserPolicies}">
+			<c:forEach var="temp" items="${PolicyList}">
 				<tr>
 					<td>${temp.getScheme_number()}</td>
         			<td>${temp.getPolicy_name()}</td>

@@ -58,7 +58,6 @@
     <div class="hero-text">
       <h2>Protecting What Matters Most</h2>
       <p>Choose the right insurance coverage for your needs.</p>
-      <a href="get_quote.html" class="btn">Get a Quote</a>
     </div>
   </div>
 </body>

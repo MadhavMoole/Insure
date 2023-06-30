@@ -59,12 +59,12 @@ body {
 		<div class="hero-text">
 			<h2>Protecting What Matters Most</h2>
 			<p>Choose the right insurance coverage for your needs.</p>
-			<form:form action="signup" method="get"
-		modelAttribute="user">
+			<form:form action="signUp" method="get"
+		modelAttribute="customer">
 		<div style="text-align: center;">
 			<p>
-				<label for="yn">User name:</label>
-				<form:input id="yn" path="userName" />
+				<label for="yn">Name:</label>
+				<form:input id="yn" path="name" />
 			</p>
 			<p>
 				<label for="em">Email:</label>
@@ -72,7 +72,19 @@ body {
 			</p>
 			<p>
 				<label for="ps">Password:</label>
-				<form:input id="ps" path="password" />
+				<form:password id="ps" path="password" />
+			</p>
+			<p>
+				<label for="age">age:</label>
+				<form:input id="age" path="age" />
+			</p>
+			<p>
+				<label for="add">address:</label>
+				<form:textarea id="add" path="address" />
+			</p>
+			<p>
+				<label for="ph">Phone:</label>
+				<form:textarea id="ph" path="phone_number" />
 			</p>
 			<input type="submit" value="Register" />
 		</div>

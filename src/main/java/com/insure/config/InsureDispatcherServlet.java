@@ -11,8 +11,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan("com.insure.controllers")
 public class InsureDispatcherServlet {
 	
-	
-	
 	//Tell Spring that this is a Java bean for which i want you to create an Object for
 	@Bean
 	public InternalResourceViewResolver viewResolver() {

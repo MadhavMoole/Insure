@@ -55,7 +55,6 @@ body {
 	<div class="container">
 		<img class="hero-image" src="insurance_hero_image.jpg"
 			alt="Insurance Hero Image">
-
 		<div class="hero-text">
 			<h2>Protecting What Matters Most</h2>
 			<p>Choose the right insurance coverage for your needs.</p>
@@ -70,7 +69,7 @@ body {
               >
                 <option value="Select">Select</option>
                 <option value="Life Insurance">Life Insurance</option>
-                <option value="Driver's Insurance">Driver's Insurance</option>
+                <option value="Drivers Insurance">Drivers Insurance</option>
                 <option value="Property Insurance">Property Insurance</option>
               </form:select>
 			</p>

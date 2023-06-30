@@ -7,8 +7,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-//import com.insure.base.Insurance;
-import com.insure.base.User;
 import com.insure.base.Customer;
 import com.insure.base.CustomerPolicy;
 import com.insure.resultSet.InsuranceResultSetExtractor;
@@ -21,42 +19,42 @@ public class InsureDAOImpl implements InsureDAO {
 	private JdbcTemplate jt;
 
 	@Override
-	public String validate(String username, String password) {
+	public int login(String name, String password) {
 		// TODO Auto-generated method stub
-		if (username.equals("admin") && password.equals("adm123")) {
-			return "admin";
-		}
-
-		String sql = "Select count(*) from user where username = ? AND password = ?;";
-		int count = jt.queryForObject(sql, Integer.class, username, password);
-		return count == 1 ? "user" : "not-user";
+		String sql = "SELECT count(*) FROM customer WHERE name = ? and password = ?";
+		Object[] args = {name, password};
+		return jt.queryForObject(sql, Integer.class, args);
 	}
 
 	@Override
-	public void register(User user) {
+	public int register(Customer customer) {
 		// TODO Auto-generated method stub
-		String sql = "Insert into user ( email , userName, password ) values ('" + user.getEmail() + "', '"
-				+ user.getUserName() + "', '" + user.getPassword() + "');";
-		jt.update(sql);
+		String sql = "INSERT INTO customer (name, email, address, age, phone_number, password) SELECT (?, ?, ?, ?, ?, ?) WHERE NOT EXISTS ( SELECT 1 FROM customer WHERE email = '"+ customer.getEmail() +"')";
+		Object[] args = {customer.getName(), customer.getEmail(), customer.getAddress(), customer.getAge(), customer.getPhone_number(), customer.getPassword()};
+		return jt.update(sql, args);
 	}
 
 	@Override
-	public ArrayList<CustomerPolicy> getData(String username, String password) {
+	public ArrayList<CustomerPolicy> getData(int id) {
 		// TODO Auto-generated method stub
-		int user_id = jt.queryForObject("select id from user.user where userName = ? and password = ?;", Integer.class,
-				username, password);
-
-		String sql = "SELECT p.id, p.scheme_number, p.policy_name, p.max_no_of_years, p.amount FROM policy p "
-				+ "JOIN user_policy up ON p.id = up.policy_id JOIN insurance i ON i.id = up.insurance_id "
-				+ "WHERE i.user_id = ?";
-		ArrayList<CustomerPolicy> uP =  jt.query(sql, new InsuranceResultSetExtractor(), user_id);
-		return uP;
+		String sql = "SELECT p.scheme_number, p.policy_name, p.max_no_of_years, p.amount FROM policy p JOIN customer c ON c.id = p.customer_id WHERE c.id = "+ id +";";
+		return jt.query(sql, new InsuranceResultSetExtractor());
 	}
 
 	@Override
-	public void savePolicy(Customer customer) {
+	public int savePolicy(CustomerPolicy customerPol, String name, String password) {
 		// TODO Auto-generated method stub
+		int id = getID(name, password);
 		
+		return 0;
 	}
+
+	@Override
+	public int getID(String name, String password) {
+		// TODO Auto-generated method stub
+		String sql = "SELECT id FROM customer WHERE name = "+ name +" AND password = "+ password +";";
+		return jt.queryForObject(sql, Integer.class);
+	}
+
 
 }

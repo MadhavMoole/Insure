@@ -59,20 +59,19 @@ body {
 		<div class="hero-text">
 			<h2>Protecting What Matters Most</h2>
 			<p>Choose the right insurance coverage for your needs.</p>
-			<form:form action="validate" method="post"
-		modelAttribute="user">
+			<form action="validate" method="post">
 		<div style="text-align: center;">
 			<p>
-				<label for="yn">User name:</label>
-				<form:input id="yn" path="userName" />
+				<label for="yn">Name:</label>
+				<input id="yn" name="name" />
 			</p>
 			<p>
 				<label for="ps">Password:</label>
-				<form:input id="ps" path="password" />
+				<input id="ps" name="password" />
 			</p>
 			<input type="submit" value="Login" />
 		</div>
-	</form:form>
+	</form>
 		</div>
 	</div>
 </body>
