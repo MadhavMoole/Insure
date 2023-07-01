@@ -59,8 +59,10 @@ public class InsureServiceImpl implements InsureService{
 	    } else {
 	        customerPol.setScheme_number(3);
 	    } 
-		impl.savePolicy(customerPol, name, password);
-		return null;
+		if(impl.savePolicy(customerPol, name, password) == 1) {
+			return "redirect:/main-page";
+		}
+		return "policy-apply";
 	}
 
 }

@@ -29,7 +29,7 @@ public class InsureDAOImpl implements InsureDAO {
 	@Override
 	public int register(Customer customer) {
 		// TODO Auto-generated method stub
-		String sql = "INSERT INTO customer (name, email, address, age, phone_number, password) SELECT (?, ?, ?, ?, ?, ?) WHERE NOT EXISTS ( SELECT 1 FROM customer WHERE email = '"+ customer.getEmail() +"')";
+		String sql = "INSERT INTO customer (name, email, address, age, phone_number, password) SELECT ?, ?, ?, ?, ?, ? WHERE NOT EXISTS ( SELECT 1 FROM customer WHERE email = '"+ customer.getEmail() +"')";
 		Object[] args = {customer.getName(), customer.getEmail(), customer.getAddress(), customer.getAge(), customer.getPhone_number(), customer.getPassword()};
 		return jt.update(sql, args);
 	}
@@ -45,14 +45,14 @@ public class InsureDAOImpl implements InsureDAO {
 	public int savePolicy(CustomerPolicy customerPol, String name, String password) {
 		// TODO Auto-generated method stub
 		int id = getID(name, password);
-		
-		return 0;
+		String sql = "INSERT INTO policy (scheme_number, policy_name, max_no_of_years, amount, customer_id) SELECT " + customerPol.getScheme_number() + ", '"+ customerPol.getPolicy_name() +"', "+ customerPol.getMax_no_of_years() +","+ customerPol.getAmount() +", id FROM customer WHERE id = "+ id +";";
+		return jt.update(sql);
 	}
 
 	@Override
 	public int getID(String name, String password) {
 		// TODO Auto-generated method stub
-		String sql = "SELECT id FROM customer WHERE name = "+ name +" AND password = "+ password +";";
+		String sql = "SELECT id FROM customer WHERE name = '"+ name +"' AND password = '"+ password +"';";
 		return jt.queryForObject(sql, Integer.class);
 	}
 

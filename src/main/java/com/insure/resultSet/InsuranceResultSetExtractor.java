@@ -17,10 +17,10 @@ public class InsuranceResultSetExtractor implements ResultSetExtractor<ArrayList
 		ArrayList<CustomerPolicy> User = new ArrayList<>();
 		while(rs.next()) {
 			CustomerPolicy Policy = new CustomerPolicy();
-			Policy.setAmount(rs.getInt(5));
-			Policy.setMax_no_of_years(rs.getInt(4));
-			Policy.setPolicy_name(rs.getString(3));
-			Policy.setScheme_number(rs.getInt(2));
+			Policy.setAmount(rs.getDouble(4));
+			Policy.setMax_no_of_years(rs.getInt(3));
+			Policy.setPolicy_name(rs.getString(2));
+			Policy.setScheme_number(rs.getInt(1));
 			User.add(Policy);
 		}
 		return User;

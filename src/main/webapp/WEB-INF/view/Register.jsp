@@ -60,7 +60,7 @@ body {
 			<h2>Protecting What Matters Most</h2>
 			<p>Choose the right insurance coverage for your needs.</p>
 			<form:form action="signUp" method="get"
-		modelAttribute="customer">
+		modelAttribute="Customer">
 		<div style="text-align: center;">
 			<p>
 				<label for="yn">Name:</label>

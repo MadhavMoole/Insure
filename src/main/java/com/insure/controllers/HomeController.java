@@ -60,18 +60,16 @@ public class HomeController {
 		return service.register(customer);
 	}
 	
-	
 	@GetMapping("/policyRequest")
-	public String SelectPolicy() {
-		return "policy-apply";
+	public String SelectPolicy(@ModelAttribute("CustomerPol") CustomerPolicy customerPol) {
+		return "Policy-apply";
 	}
 	
 	@GetMapping("/addPolicy")
 	public String addPolicy(@ModelAttribute("CustomerPol") CustomerPolicy customerPol, HttpSession session) {
 		String name = (String) session.getAttribute("name");
 		String password = (String) session.getAttribute("password");
-		service.addData(customerPol, name, password);
-		return "redirect:/main-page";
+		return service.addData(customerPol, name, password);
 	}
 	
 	@GetMapping("/main-page")
