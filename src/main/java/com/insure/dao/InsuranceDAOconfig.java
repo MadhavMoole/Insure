@@ -12,7 +12,7 @@ public class InsuranceDAOconfig {
 
 	// Now we can either use traditional DAO implementations to create datasource
 	// and
-	// JdbcTemplate Implementations but we are going to use Hibernate and JPA!
+	// JdbcTemplate Implementations 
 
 	@Bean
 	public DataSource dataSource() {

@@ -6,6 +6,18 @@ public class CustomerPolicy {
 	private int max_no_of_years;
 	private double amount;
 	
+	public CustomerPolicy() {
+		
+	}
+	
+	public CustomerPolicy(int scheme_number, String policy_name, int max_no_of_years, double amount) {
+		super();
+		this.scheme_number = scheme_number;
+		this.policy_name = policy_name;
+		this.max_no_of_years = max_no_of_years;
+		this.amount = amount;
+	}
+	
 	public int getScheme_number() {
 		return scheme_number;
 	}

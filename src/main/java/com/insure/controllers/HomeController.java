@@ -80,4 +80,24 @@ public class HomeController {
 		model.addAttribute("PolicyList", cp);
 	    return "main-page";
 	}
+	
+	@PostMapping("/up")
+	public String viewUpdatePage(HttpSession session, @ModelAttribute("Customer") Customer customer) {
+		Integer id = service.getID(session.getAttribute("name").toString(), session.getAttribute("password").toString());
+		customer = service.getCustomer(id);
+		return "update-Page";
+	}
+	
+	@PostMapping("/upd")
+	public String updatePolicy(@ModelAttribute("Customer") Customer customer) {
+		service.updateCustomer(customer);
+		return "redirect:/main-page";
+	}
+	
+	@PostMapping("/del")
+	public String deleteCustomer(HttpSession session) {
+		Integer id = service.getID(session.getAttribute("name").toString(), session.getAttribute("password").toString());
+		service.deleteCustomer(id);
+		return "home-page";
+	}
 }

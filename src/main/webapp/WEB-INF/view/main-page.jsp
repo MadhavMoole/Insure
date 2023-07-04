@@ -7,8 +7,14 @@
 <meta charset="UTF-8">
 <title>List of Policies</title>
 </head>
-<body >
-	<table border="1" style="text-align:center;">
+<body>
+	<form action="up" method="POST">
+		<button type="submit">Update</button>
+	</form>
+	<form action="del" method="GET">
+		<button type="submit">Delete</button>
+	</form>
+	<table border="1" style="text-align: center;">
 		<thead>
 			<tr>
 				<th>Scheme Number</th>
@@ -21,11 +27,11 @@
 			<c:forEach var="temp" items="${PolicyList}">
 				<tr>
 					<td>${temp.getScheme_number()}</td>
-        			<td>${temp.getPolicy_name()}</td>
-        			<td>${temp.getAmount()}</td>
-        			<td>${temp.getMax_no_of_years()}</td>
-        		</tr>
-    		</c:forEach>
+					<td>${temp.getPolicy_name()}</td>
+					<td>${temp.getAmount()}</td>
+					<td>${temp.getMax_no_of_years()}</td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 </body>

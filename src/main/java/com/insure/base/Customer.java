@@ -10,6 +10,23 @@ public class Customer {
 	private String password;
 	private ArrayList<CustomerPolicy> customerPolicy;
 	
+	public Customer() {
+		
+	}
+	
+	public Customer(int id, String name, String address, String email, int age, long phone_number, String password,
+			ArrayList<CustomerPolicy> customerPolicy) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.address = address;
+		this.email = email;
+		this.age = age;
+		this.phone_number = phone_number;
+		this.password = password;
+		this.customerPolicy = customerPolicy;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -87,6 +104,13 @@ public class Customer {
 
 	public void setCustomerPolicy(ArrayList<CustomerPolicy> customerPolicy) {
 		this.customerPolicy = customerPolicy;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", name=" + name + ", address=" + address + ", email=" + email + ", age=" + age
+				+ ", phone_number=" + phone_number + ", password=" + password + ", customerPolicy=" + customerPolicy
+				+ "]";
 	}
 
 	

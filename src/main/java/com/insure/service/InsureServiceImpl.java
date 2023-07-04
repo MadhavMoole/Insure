@@ -1,6 +1,7 @@
 package com.insure.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -37,7 +38,7 @@ public class InsureServiceImpl implements InsureService{
 	}
 
 	@Override
-	public int getID(String name, String password) {
+	public Integer getID(String name, String password) {
 		// TODO Auto-generated method stub
 		return impl.getID(name, password);
 	}
@@ -63,6 +64,64 @@ public class InsureServiceImpl implements InsureService{
 			return "redirect:/main-page";
 		}
 		return "policy-apply";
+	}
+
+	@Override
+	public List<Customer> getCustomerList() {
+		// TODO Auto-generated method stub
+		return impl.getCustomerList();
+	}
+
+	@Override
+	public List<CustomerPolicy> getPolicyList(Integer id) {
+		// TODO Auto-generated method stub
+		return impl.getData(id);
+	}
+
+	@Override
+	public Customer getCustomer(Integer id) {
+		// TODO Auto-generated method stub
+		Customer customer = impl.getCustomer(id);
+		customer.setId(id);
+		return customer;
+	}
+
+	@Override
+	public void updateCustomer(Customer customer) {
+		// TODO Auto-generated method stub
+		impl.updateCustomer(customer);
+	}
+
+	@Override
+	public void deleteCustomer(Integer id) {
+		// TODO Auto-generated method stub
+		impl.deleteCustomer(id);
+	}
+
+	@Override
+	public void updateCustomerPolicy(CustomerPolicy policy, Integer id) {
+		// TODO Auto-generated method stub
+		if (policy.getPolicy_name().equals("Life Insurance")) {
+	        policy.setScheme_number(1);
+	    } else if (policy.getPolicy_name().equals("Driver's Insurance")) {
+	        policy.setScheme_number(2);
+	    } else {
+	        policy.setScheme_number(3);
+	    } 
+		impl.updateCustomerPolicy(policy, id);
+	}
+
+	@Override
+	public void deleteCustomerPolicy(CustomerPolicy policy, Integer id) {
+		// TODO Auto-generated method stub
+		if (policy.getPolicy_name().equals("Life Insurance")) {
+	        policy.setScheme_number(1);
+	    } else if (policy.getPolicy_name().equals("Driver's Insurance")) {
+	        policy.setScheme_number(2);
+	    } else {
+	        policy.setScheme_number(3);
+	    } 
+		impl.deleteCustomerPolicy(policy, id);
 	}
 
 }
